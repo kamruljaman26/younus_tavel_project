@@ -1,0 +1,133 @@
+/* Custom Stylesheet */
+nav ul a,
+nav .brand-logo {
+  color: #444;
+}
+
+p {
+  line-height: 2rem;
+}
+
+.sidenav-trigger {
+  color: #26a69a;
+}
+
+.parallax-container {
+  min-height: 380px;
+  line-height: 0;
+  height: auto;
+  color: rgba(255,255,255,.9);
+}
+  .parallax-container .section {
+    width: 100%;
+  }
+
+@media only screen and (max-width : 992px) {
+  .parallax-container .section {
+    position: absolute;
+    top: 40%;
+  }
+  #index-banner .section {
+    top: 10%;
+  }
+}
+
+@media only screen and (max-width : 600px) {
+  #index-banner .section {
+    top: 0;
+  }
+}
+
+.icon-block {
+  padding: 0 15px;
+}
+.icon-block .material-icons {
+  font-size: inherit;
+}
+
+footer.page-footer {
+  margin: 0;
+}
+
+.datepicker-date-display{
+  color:#fff;
+}
+
+#search-button{
+  width: 200px;
+}
+.copyrit {
+  /* align-items: center; */
+  text-align: center;
+  background-color: black;
+  color: white;
+  font-size: larger;
+}
+ /* Footer start here*/
+   
+ footer{
+  padding: 10px;
+  background: #000000;       
+}
+
+
+footer a{
+  
+  color: white;
+  
+  margin: 0 10px;
+}
+
+footer a:hover{
+  
+  color: #FFFFFF;
+}
+
+.copyright{
+
+  background-color: #1d9fd3;
+  color: white;
+  height: 40px;
+}
+
+.col-lg-3{
+
+  padding: 20px;
+}
+
+.col-lg-3 a{
+  
+  color: white;
+
+  padding: 20px;
+}
+
+
+.col-lg-3 p{
+  
+
+  padding: 3px;
+}
+
+.col-lg-3 a :hover{
+
+  color: #FFFFFF;
+  text-underline-offset:#FFFFFF;
+}
+
+/* Footer end here*/
+.column {
+  float: left;
+  width: 33.33%;
+  padding: 10px;
+  height: 300px; 
+}
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.white {
+  background-color: #e9e9e9 !important;
+}
