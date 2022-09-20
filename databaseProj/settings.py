@@ -1,11 +1,6 @@
 import os
 import json
 
-json_file = open('databaseProj/config_vars.json').read()
-data = json.loads(json_file)
-secret = data['SECRET_KEY']
-sql_password = data['sql_password']
-
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -13,7 +8,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = secret
+SECRET_KEY = 'django-insecure-%&jpa_*%33o%f+p!ueruojdrc(e2(6&$kdv554$qpm$rt!t!d$'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True

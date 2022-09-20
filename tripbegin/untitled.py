@@ -1,1 +1,0 @@
-GRANT ALL ON tripbegin.* TO 'root'@'localhost' IDENTIFIED BY 'passcodeql';
