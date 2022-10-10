@@ -2,134 +2,140 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>Trip Begin</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>Trip Begin</title>
 
-  <!-- CSS  --> 
-  
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link href="{% static 'css/materialize.css' %}" type="text/css" rel="stylesheet" media="screen,projection"/>
-  <link href="{% static 'css/style.css' %}" type="text/css" rel="stylesheet" media="screen,projection"/>
-  
+    <!-- CSS  -->
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="{% static 'css/materialize.css' %}" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <link href="{% static 'css/style.css' %}" type="text/css" rel="stylesheet" media="screen,projection"/>
+
 </head>
 <body>
-  <nav class="white" role="navigation">
+<nav class="white" role="navigation">
     <div class="nav-wrapper container">
-      <a href="/"><img src="\static\images/logo.png" alt="Logo" style="width:auto;height:42px;"></a>
-      <ul class="right hide-on-med-and-down">
-        <li><a href="/">Flights</a></li>
-        <li><a href="/hotels">Hotels</a></li>
-        <!-- Dropdown Trigger -->
-
-        <a class='dropdown-trigger btn' href='#' data-target='dropdown1'>My Account</a>
-        {% if request.session.current_user %}        
-        <ul id='dropdown1' class='dropdown-content'>
-          <li><a href="/account">Settings</a></li>
-          <li><a href="/logout">Log Out</a></li>
-        </ul>
-        {% else %}
-        <!-- Dropdown Structure -->
-        <ul id='dropdown1' class='dropdown-content'>
-          <li><a href="/login">Log In</a></li>
-          <li><a href="/signup">Sign Up</a></li>
-        </ul>
-        {% endif %}
-      </ul>
-      
-      <ul id="nav-mobile" class="sidenav">
         <a href="/"><img src="\static\images/logo.png" alt="Logo" style="width:auto;height:42px;"></a>
-        <li class="divider" tabindex="-1"></li>
-        <li><a href="/">Flights</a></li>
-        <li><a href="/hotels">Hotels</a></li>
-        <li><a href="/trains">Trains</a></li>
-        <li><a href="/holidays">Holidays</a></li>
-        <li><a href="/reviews">Review</a></li>
-        <li class="divider" tabindex="-1"></li>
-        {% if request.session.current_user %}        
-        <li><a href="/account">Settings</a></li>
-        <li><a href="/logout">Log Out</a></li>
-        {% else %}
-        <li><a class="teal-text" href="/login">Log In</a></li>
-        <li><a href="/signup">Sign Up</a></li>
-        {% endif %}
-      </ul>
-      <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+        <ul class="right hide-on-med-and-down">
+            <li><a href="/">Flights</a></li>
+            <li><a href="/hotels">Hotels</a></li>
+            <!-- Dropdown Trigger -->
+
+            <a class='dropdown-trigger btn' href='#' data-target='dropdown1'>My Account</a>
+            {% if request.session.current_user %}
+                <ul id='dropdown1' class='dropdown-content'>
+                    <li><a href="/account">Settings</a></li>
+                    <li><a href="/logout">Log Out</a></li>
+                </ul>
+            {% else %}
+                <!-- Dropdown Structure -->
+                <ul id='dropdown1' class='dropdown-content'>
+                    <li><a href="/login">Log In</a></li>
+                    <li><a href="/signup">Sign Up</a></li>
+                </ul>
+            {% endif %}
+        </ul>
+
+        <ul id="nav-mobile" class="sidenav">
+            <a href="/"><img src="\static\images/logo.png" alt="Logo" style="width:auto;height:42px;"></a>
+            <li class="divider" tabindex="-1"></li>
+            <li><a href="/">Flights</a></li>
+            <li><a href="/hotels">Hotels</a></li>
+            <li><a href="/trains">Trains</a></li>
+            <li><a href="/holidays">Holidays</a></li>
+            <li><a href="/reviews">Review</a></li>
+            <li class="divider" tabindex="-1"></li>
+            {% if request.session.current_user %}
+                <li><a href="/account">Settings</a></li>
+                <li><a href="/logout">Log Out</a></li>
+            {% else %}
+                <li><a class="teal-text" href="/login">Log In</a></li>
+                <li><a href="/signup">Sign Up</a></li>
+            {% endif %}
+        </ul>
+        <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
     </div>
-  </nav>
+</nav>
 
-  {% block content %}
-  {% endblock content %}
+<div class="container">
+    {% block content %}
+    {% endblock content %}
+</div>
 
-    <!-- Site footer -->
- 
+<!-- Site footer -->
+
+<div class="container">
     <div class="row">
-      <div class="column" style="background-color:#ccc;">
-        <h3 class="p-4 mt-1"> About Us</h3>
-        <img class="img-responsive" src="\static\images/logobw.png" alt="Logo" style="width:auto;height:40px;">
-        <p> Trip Begin is a leading Online Travel Agency in Bangladesh. Plan your trip with "Trip Begin". Book your Flights, Hotel, Bus, Train, Tours online, Best price Guaranted.</p>
-        <a href=""><i class="fab-thin fa-play"></i></a>
-        <a href=""><i class="fab-brands fa-app-store-ios"></i></a> 
-      </div>
+        <div class="column" style="background-color:#ccc;">
+            <h3 class="p-4 mt-1"> About Us</h3>
+            <img class="img-responsive" src="\static\images/logobw.png" alt="Logo" style="width:auto;height:40px;">
+            <p> Trip Begin is a leading Online Travel Agency in Bangladesh. Plan your trip with "Trip Begin". Book your
+                Flights, Hotel, Bus, Train, Tours online, Best price Guaranted.</p>
+            <a href=""><i class="fab-thin fa-play"></i></a>
+            <a href=""><i class="fab-brands fa-app-store-ios"></i></a>
+        </div>
 
-      <div class="column" style="background-color:#bbb;">
-        <h3 class="p-4 mt-1"> Imporent Links</h3>
-        Flight <br>
-        Hotel <br>
-        Payment Method<br>
-        Privacy Policy<br>
-        Refund Policy<br>
-      </div>
+        <div class="column" style="background-color:#bbb;">
+            <h3 class="p-4 mt-1"> Imporent Links</h3>
+            Flight <br>
+            Hotel <br>
+            Payment Method<br>
+            Privacy Policy<br>
+            Refund Policy<br>
+        </div>
 
-      <div class="column" style="background-color:#ccc;">
-        <h3 class="p-4 mt-1"> Contact Us</h3>
+        <div class="column" style="background-color:#ccc;">
+            <h3 class="p-4 mt-1"> Contact Us</h3>
 
-       Email: sales@tripbegin.com <br>
-        Hotline:+8809638077077<br>
-        Mobile: +8801709377252<br>
+            Email: sales@tripbegin.com <br>
+            Hotline:+8809638077077<br>
+            Mobile: +8801709377252<br>
 
-      </div>
+        </div>
     </div>
     <div class="btmfooternw">
-      <img class="img-responsive" src="\static\images/paymentgatewaylogo.png" alt="Payment" style="width:auto;height:40px;">
-        </div>
-        <div class="copyrit">
-          <strong>Copyright © 2022 <a target="_blank" href="#">
-              <span style="color: #8bc442;"> Trip Begin</span>
-            </a> All rights reserved. </strong>
-        </div>
-      </div>
+        <img class="img-responsive" src="\static\images/paymentgatewaylogo.png" alt="Payment"
+             style="width:auto;height:40px;">
     </div>
-    <!--  Scripts-->
-  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-  <script src="{% static 'js/materialize.js' %}"></script>
-  <script src="{% static 'js/init.js' %}"></script>
-  <script>
+    <div class="copyrit">
+        <strong>Copyright © 2022 <a target="_blank" href="#">
+            <span style="color: #8bc442;"> Trip Begin</span>
+        </a> All rights reserved. </strong>
+    </div>
+</div>
+
+<!--  Scripts-->
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="{% static 'js/materialize.js' %}"></script>
+<script src="{% static 'js/init.js' %}"></script>
+<script>
     $('.dropdown-trigger').dropdown();
 
     M.textareaAutoResize($('#textarea1'));
-      
+
     $('.datepicker').datepicker({
-      format: 'dd-mm-yyyy',
-       selectMonths: true, // Creates a dropdown to control month
+        format: 'dd-mm-yyyy',
+        selectMonths: true, // Creates a dropdown to control month
         selectYears: 15, // Creates a dropdown of 15 years to control year,
         today: 'Today',
         clear: 'Clear',
         close: 'Ok',
         closeOnSelect: true,
-        autoClose:true
-        });
+        autoClose: true
+    });
 
     $('input.autocomplete').autocomplete({
-      data: {
-        "Dhaka, DAC": null,
-        "Chottogram, CGP": null,
-        "Cox's Bazar, CXB": null,
-        "Rajshahi, RJH": null,
-        "Sylhet, ZYL": null,
-        "Jashore, JSR": null
-       
-      },
+        data: {
+            "Dhaka, DAC": null,
+            "Chottogram, CGP": null,
+            "Cox's Bazar, CXB": null,
+            "Rajshahi, RJH": null,
+            "Sylhet, ZYL": null,
+            "Jashore, JSR": null
+
+        },
     });
-  </script>
+</script>
+</body>
 </html>

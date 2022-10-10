@@ -76,44 +76,14 @@ def hotels(request):
         return render(request, 'hotels.html')
 
 
-def book(request):
+def book(request, id, type):
     if request.method == 'POST':
-        objId = request.GET.get('id')
-        bookType = request.GET.get('type')
-        card_number = request.POST['card_number']
         current_user = request.session['current_user']
-        current_date = datetime.datetime.today().strftime('%Y-%m-%d')
-        if bookType == 'flight':
-            travelClass = request.GET.get('class')
-            obj = Flight.objects.filter(id=objId).first()
-            if travelClass == 'economy':
-                Flight.objects.filter(id=objId).update(numSeatsRemainingEconomy=obj.numSeatsRemainingEconomy - 1)
-                new_transaction = History.objects.create(userEmail=current_user, bookingType=bookType,
-                                                         bookingStartDate=current_date, paymentAmount=obj.fareEconomy,
-                                                         paymentCardNo=card_number, companyName=obj.companyName,
-                                                         location=obj.destinationLocation)
-                new_transaction.save()
-            elif travelClass == 'business':
-                Flight.objects.filter(id=objId).update(numSeatsRemainingBusiness=obj.numSeatsRemainingBusiness - 1)
-                new_transaction = History.objects.create(userEmail=current_user, bookingType=bookType,
-                                                         bookingStartDate=current_date, paymentAmount=obj.fareBusiness,
-                                                         paymentCardNo=card_number, companyName=obj.companyName,
-                                                         location=obj.destinationLocation)
-                new_transaction.save()
-            elif travelClass == 'first':
-                Flight.objects.filter(id=objId).update(numSeatsRemainingFirst=obj.numSeatsRemainingFirst - 1)
-                new_transaction = History.objects.create(userEmail=current_user, bookingType=bookType,
-                                                         bookingStartDate=current_date, paymentAmount=obj.fareFirst,
-                                                         paymentCardNo=card_number, companyName=obj.companyName,
-                                                         location=obj.destinationLocation)
-                new_transaction.save()
-        elif bookType == 'hotel':
-            obj = Hotel.objects.filter(id=objId).first()
-            new_transaction = History.objects.create(userEmail=current_user, bookingType=bookType,
-                                                     bookingStartDate=current_date, paymentAmount=obj.dailyCost,
-                                                     paymentCardNo=card_number, companyName=obj.companyName,
-                                                     location=obj.address)
-            new_transaction.save()
+
+        print(id, type, current_user)
+
+        if type == 'flight':
+            pass
         return render(request, 'book.html', {'msg': 'Booking successful'})
 
 

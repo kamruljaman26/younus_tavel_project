@@ -54,7 +54,7 @@
                 {% for obj in some_list %}
                     <form action="" method="POST">
                         {% csrf_token %}
-                        <div class="card teal lighten-2">
+                        <div class="card teal lighten-2" style="padding-bottom: 10px">
                             <div class="card-content white-text">
                                 <span class="card-title">{{ obj.companyName }}</span>
                                 <div class="row" style="font-size: 16px;">
@@ -97,10 +97,17 @@
                                     {% endif %}
                                 </div>
                             </div>
+
                             {% if request.session.current_user %}
-                                <div class="card-action">
-                                    <a href="{% url 'book' %}?type=flight&class={{ class }}&id={{ obj.id }}">Book
-                                        Now</a>
+                                <div class="card"
+                                     style="alignment: center; margin: 20px; padding: 20px; align-content: center">
+                                    <form method="post" action="{% url 'book' obj.id "flight" %}">
+                                        {% csrf_token %}
+                                        <button style="width: 100%" class="btn waves-effect waves-light" type="submit"
+                                                name="action">Book Now
+                                            <i class="material-icons right">send</i>
+                                        </button>
+                                    </form>
                                 </div>
                             {% endif %}
                         </div>

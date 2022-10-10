@@ -50,3 +50,20 @@ class Payment(models.Model):
 	amount = models.DecimalField(max_digits=6,decimal_places=2)
 	paymentType = models.CharField(choices=PAYMENT_TYPES, max_length=6)
 	cardNo = models.CharField(max_length=16)
+
+
+# Booking model class with name, gender, dob, mobile, email
+class Booking(models.Model):
+
+	BOOKING_TYPES = [('flight', 'Flight'), ('hotel', 'Hotel')]
+	bookingType = models.CharField(choices=BOOKING_TYPES, max_length=6)
+
+	hotel = models.ForeignKey(Hotel, on_delete=models.CASCADE, null=True)
+	flight = models.ForeignKey(Flight, on_delete=models.CASCADE, null=True)
+
+	name = models.CharField(max_length=30)
+	gender = models.CharField(max_length=1)
+	dob = models.DateField()
+	mobile = models.CharField(max_length=10)
+	email = models.CharField(max_length=35)
+

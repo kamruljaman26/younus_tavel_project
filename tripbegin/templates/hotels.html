@@ -3,107 +3,121 @@
 
 {% block content %}
 
-  <div id="index-banner">
-    <div class="section no-pad-bot">
-      <div class="container">
-        <form action="" method="POST">
-        {% csrf_token %}
-        <div class="row center">
-          <h5 class="header col s12 light">Find your travel accommodations</h5>
-        <div class="input-field col l6 s12">
-          <i class="material-icons prefix">hotel</i>
-          <input type="text" name="location" id="autocomplete-input" class="autocomplete">
-          <label for="autocomplete-input">Location</label>
-        </div>
-        <div class="input-field col l3 s6">
-          <i class="material-icons prefix">date_range</i>
-          <input type="text" name="startdate" class="datepicker">
-        </div>
-        <div class="input-field col l3 s6">
-          <i class="material-icons prefix">date_range</i>
-          <input type="text" name="enddate" class="datepicker">
-        </div>
+    <div id="index-banner">
+        <div class="section no-pad-bot">
+            <div class="container">
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    <div class="row center">
+                        <h5 class="header col s12 light">Find your travel accommodations</h5>
+                        <div class="input-field col l6 s12">
+                            <i class="material-icons prefix">hotel</i>
+                            <input type="text" name="location" id="autocomplete-input" class="autocomplete">
+                            <label for="autocomplete-input">Location</label>
+                        </div>
+                        <div class="input-field col l3 s6">
+                            <i class="material-icons prefix">date_range</i>
+                            <input type="text" name="startdate" class="datepicker">
+                        </div>
+                        <div class="input-field col l3 s6">
+                            <i class="material-icons prefix">date_range</i>
+                            <input type="text" name="enddate" class="datepicker">
+                        </div>
 
-        </div>
-        <div class="row center">
-          <button class="btn waves-effect waves-light" style="width: 300px" type="submit">
-              <i class="large material-icons">search</i>
-            </button>
-        </div>
-        </form>
+                    </div>
+                    <div class="row center">
+                        <button class="btn waves-effect waves-light" style="width: 300px" type="submit">
+                            <i class="large material-icons">search</i>
+                        </button>
+                    </div>
+                </form>
 
-        <br><br>
+                <br><br>
 
-      </div>
-    </div>
-  </div>
-
-  {% if results %}
-  <div class="row center">
-      <div class="col s12 m12">
-        {% for obj in some_list %}
-          <div class="card teal lighten-2">
-            <div class="card-content white-text">
-              <span class="card-title">{{obj.companyName}}</span>
-              <p>{{obj.address}}</p>
-              <p>{{obj.startDate}}</p>
-              <p>{{obj.dailyCost}}</p>
             </div>
-            {% if request.session.current_user %} 
-            <div class="card-action">
-              <a href="{% url 'book' %}?type=hotel&id={{obj.id}}">Book Now</a>
-            </div>
-            {% endif %}
-          </div>
-        {% endfor %}
-      </div>
-    </div> 
-  {% else %}
-  <div class="parallax-container valign-wrapper">
-    <div class="section no-pad-bot">
-      <div class="container">
+        </div>
+    </div>
+
+    {% if results %}
         <div class="row center">
-          <h5 class="header col s12 light">Trip Begin Online Travel Agency</h5>
+            <div class="container">
+                <div class="col s12 m12">
+                    {% for obj in some_list %}
+                        <div class="card teal lighten-2 " style="padding-bottom: 10px">
+                            <div class="card-content white-text">
+                                <span class="card-title">{{ obj.companyName }}</span>
+                                <p>{{ obj.address }}</p>
+                                <p>{{ obj.startDate }}</p>
+                                <p>{{ obj.dailyCost }}</p>
+                            </div>
+                            {% if request.session.current_user %}
+                                <div class="card"
+                                     style="alignment: center; margin: 20px; padding: 20px; align-content: center">
+                                    <form method="post" action="{% url 'book' obj.id "hotel" %}">
+                                        {% csrf_token %}
+                                        <button style="width: 100%" class="btn waves-effect waves-light" type="submit"
+                                                name="action">Book Now
+                                            <i class="material-icons right">send</i>
+                                        </button>
+                                    </form>
+                                </div>
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-    <div class="parallax"><img src="{% static 'images/hotelcover.jpg' %}" alt="Unsplashed background img 2"></div>
-  </div>
-
-  <div class="container">
-    <div class="section">
-
-      <div class="row">
-        <div class="col s12 m4">
-          <div class="icon-block">
-            <h2 class="center brown-text"><i class="material-icons">flash_on</i></h2>
-            <h5 class="center">Trust & Safety</h5>
-
-            <p class="light">We're serious about your safety, which is why we've taken every measure to ensure the safety and security.</p>
-          </div>
+    {% else %}
+        <div class="parallax-container valign-wrapper">
+            <div class="section no-pad-bot">
+                <div class="container">
+                    <div class="row center">
+                        <h5 class="header col s12 light">Trip Begin Online Travel Agency</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="parallax"><img src="{% static 'images/hotelcover.jpg' %}" alt="Unsplashed background img 2">
+            </div>
         </div>
 
-        <div class="col s12 m4">
-          <div class="icon-block">
-            <h2 class="center brown-text"><i class="material-icons">group</i></h2>
-            <h5 class="center">24/7 Customer Care</h5>
+        <div class="container">
+            <div class="section">
 
-            <p class="light">By utilizing elements and principles of Material Design, we were able to create a framework that incorporates components and animations that provide more feedback to users. Additionally, a single underlying responsive system across all platforms allow for a more unified user experience.</p>
-          </div>
+                <div class="row">
+                    <div class="col s12 m4">
+                        <div class="icon-block">
+                            <h2 class="center brown-text"><i class="material-icons">flash_on</i></h2>
+                            <h5 class="center">Trust & Safety</h5>
+
+                            <p class="light">We're serious about your safety, which is why we've taken every measure to
+                                ensure the safety and security.</p>
+                        </div>
+                    </div>
+
+                    <div class="col s12 m4">
+                        <div class="icon-block">
+                            <h2 class="center brown-text"><i class="material-icons">group</i></h2>
+                            <h5 class="center">24/7 Customer Care</h5>
+
+                            <p class="light">By utilizing elements and principles of Material Design, we were able to
+                                create a framework that incorporates components and animations that provide more
+                                feedback to users. Additionally, a single underlying responsive system across all
+                                platforms allow for a more unified user experience.</p>
+                        </div>
+                    </div>
+
+                    <div class="col s12 m4">
+                        <div class="icon-block">
+                            <h2 class="center brown-text"><i class="material-icons">settings</i></h2>
+                            <h5 class="center">Reliability</h5>
+
+                            <p class="light">Search, select and save - the fastest way to book your trip.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
         </div>
-
-        <div class="col s12 m4">
-          <div class="icon-block">
-            <h2 class="center brown-text"><i class="material-icons">settings</i></h2>
-            <h5 class="center">Reliability</h5>
-
-            <p class="light">Search, select and save - the fastest way to book your trip.</p>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-  {% endif %}
+    {% endif %}
 
 {% endblock content %}
