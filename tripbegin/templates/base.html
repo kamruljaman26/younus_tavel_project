@@ -20,6 +20,11 @@
         <ul class="right hide-on-med-and-down">
             <li><a href="/">Flights</a></li>
             <li><a href="/hotels">Hotels</a></li>
+
+            {#    only show if user logded in    #}
+            {% if request.session.current_user %}
+                <li><a href="/booking">Booking</a></li>
+            {% endif %}
             <!-- Dropdown Trigger -->
 
             <a class='dropdown-trigger btn' href='#' data-target='dropdown1'>My Account</a>

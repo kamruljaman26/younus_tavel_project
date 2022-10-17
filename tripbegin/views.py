@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.http import Http404
 from django.views.decorators.csrf import csrf_exempt
+from .forms import *
 
 # import jwt
 import json
@@ -79,12 +80,49 @@ def hotels(request):
 def book(request, id, type):
     if request.method == 'POST':
         current_user = request.session['current_user']
+        print("user:", current_user)
 
-        print(id, type, current_user)
+        # Handle hotel booking
+        if type == 'hotel':
+            form = BookingForm(request.POST)
+            # print(form)
+            print("hotel")
+            if form.is_valid():
+                booking = form.save()
+                booking.hotel = Hotel.objects.get(id=id)
+                booking.user = User.objects.filter(email=current_user).first()
+                booking.save()
 
-        if type == 'flight':
-            pass
+                # messages.success(request, "Registration successful.")
+                return render(request, 'book.html', {"form": form, 'msg': 'Booking confirmed!'})
+            return render(request, 'book.html', {"form": form, 'msg': 'Invalid Data'})
+
+        # Handle flight booking
+        elif type == 'flight':
+            form = BookingForm(request.POST)
+            # print(form)
+            print("flight")
+            if form.is_valid():
+                booking = form.save()
+                booking.flight = Flight.objects.get(id=id)
+                booking.user = User.objects.filter(email=current_user).first()
+                booking.save()
+
+                # messages.success(request, "Registration successful.")
+                return render(request, 'book.html', {"form": form, 'msg': 'Booking confirmed!'})
+            return render(request, 'book.html', {"form": form, 'msg': 'Invalid Data'})
+
         return render(request, 'book.html', {'msg': 'Booking successful'})
+    else:
+        form = BookingForm()
+        return render(request, 'book.html', {"form": form, 'msg': 'Load forms'})
+
+
+def booking(request):
+    current_user = request.session['current_user']
+    hotel_list = list(Booking.objects.filter(user=User.objects.filter(email=current_user).first(), hotel__isnull=False))
+    flight_list = list(Booking.objects.filter(user=User.objects.filter(email=current_user).first(), flight__isnull=False))
+    return render(request, 'booking.html', {"hotel_list": hotel_list, "flight_list": flight_list})
 
 
 def account(request):

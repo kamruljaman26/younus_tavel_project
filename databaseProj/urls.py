@@ -26,6 +26,7 @@ urlpatterns = [
     path('signup/', views.signup, name='signup'),
     # path('trains/', views.trains, name='trains'),
     path('hotels/', views.hotels, name='hotels'),
+    path('booking/', views.booking, name='booking'),
     # path('holidays/', views.holidays, name='holidays'),
     path('book/<int:id>/<str:type>', views.book, name='book'),
     path('account/', views.account, name='account'),

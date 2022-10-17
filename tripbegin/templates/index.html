@@ -52,66 +52,64 @@
         <div class="row center">
             <div class="container">
                 {% for obj in some_list %}
-                    <form action="" method="POST">
-                        {% csrf_token %}
-                        <div class="card teal lighten-2" style="padding-bottom: 10px">
-                            <div class="card-content white-text">
-                                <span class="card-title">{{ obj.companyName }}</span>
-                                <div class="row" style="font-size: 16px;">
-                                    <div class="col l4 m4 s4">
-                                        <p>Source: {{ obj.sourceLocation }}</p>
-                                        <p>Destination: {{ obj.destinationLocation }}</p>
-                                    </div>
-                                    <div class="col l4 m4 s4">
-                                        <p>Departure Date: {{ obj.departureDate }}</p>
-                                        <p>Departure Time: {{ obj.departureTime }}</p>
-                                    </div>
-                                    {% if class == "economy" %}
-                                        <div class="col l4 m4 s4">
-                                            <p>Class: economy</p>
-                                            <p>Fare: {{ obj.fareEconomy }}</p>
-                                            <p>Seats Available: {{ obj.numSeatsRemainingEconomy }}</p>
-                                        </div>
-                                    {% endif %}
-                                    {% if class == "business" %}
-                                        <div class="col l4 m4 s4">
-                                            <p>Class: business</p>
-                                        </div>
-                                        <div class="col l4 m4 s4">
-                                            <p>Fare: {{ obj.fareBusiness }}</p>
-                                        </div>
-                                        <div class="col l4 m4 s4">
-                                            <p>Seats Available: {{ obj.numSeatsRemainingBusiness }}</p>
-                                        </div>
-                                    {% endif %}
-                                    {% if class == "first" %}
-                                        <div class="col l4 m4 s4">
-                                            <p>Class: first</p>
-                                        </div>
-                                        <div class="col l4 m4 s4">
-                                            <p>Fare: {{ obj.fareFirst }}</p>
-                                        </div>
-                                        <div class="col l4 m4 s4">
-                                            <p>Seats Available: {{ obj.numSeatsRemainingFirst }}</p>
-                                        </div>
-                                    {% endif %}
-                                </div>
-                            </div>
 
-                            {% if request.session.current_user %}
-                                <div class="card"
-                                     style="alignment: center; margin: 20px; padding: 20px; align-content: center">
-                                    <form method="post" action="{% url 'book' obj.id "flight" %}">
-                                        {% csrf_token %}
-                                        <button style="width: 100%" class="btn waves-effect waves-light" type="submit"
-                                                name="action">Book Now
-                                            <i class="material-icons right">send</i>
-                                        </button>
-                                    </form>
+                    <div class="card teal lighten-2" style="padding-bottom: 10px">
+                        <div class="card-content white-text">
+                            <span class="card-title">{{ obj.companyName }}</span>
+                            <div class="row" style="font-size: 16px;">
+                                <div class="col l4 m4 s4">
+                                    <p>Source: {{ obj.sourceLocation }}</p>
+                                    <p>Destination: {{ obj.destinationLocation }}</p>
                                 </div>
-                            {% endif %}
+                                <div class="col l4 m4 s4">
+                                    <p>Departure Date: {{ obj.departureDate }}</p>
+                                    <p>Departure Time: {{ obj.departureTime }}</p>
+                                </div>
+                                {% if class == "economy" %}
+                                    <div class="col l4 m4 s4">
+                                        <p>Class: economy</p>
+                                        <p>Fare: {{ obj.fareEconomy }}</p>
+                                        <p>Seats Available: {{ obj.numSeatsRemainingEconomy }}</p>
+                                    </div>
+                                {% endif %}
+                                {% if class == "business" %}
+                                    <div class="col l4 m4 s4">
+                                        <p>Class: business</p>
+                                    </div>
+                                    <div class="col l4 m4 s4">
+                                        <p>Fare: {{ obj.fareBusiness }}</p>
+                                    </div>
+                                    <div class="col l4 m4 s4">
+                                        <p>Seats Available: {{ obj.numSeatsRemainingBusiness }}</p>
+                                    </div>
+                                {% endif %}
+                                {% if class == "first" %}
+                                    <div class="col l4 m4 s4">
+                                        <p>Class: first</p>
+                                    </div>
+                                    <div class="col l4 m4 s4">
+                                        <p>Fare: {{ obj.fareFirst }}</p>
+                                    </div>
+                                    <div class="col l4 m4 s4">
+                                        <p>Seats Available: {{ obj.numSeatsRemainingFirst }}</p>
+                                    </div>
+                                {% endif %}
+                            </div>
                         </div>
-                    </form>
+
+                        {% if request.session.current_user %}
+                            <div class="card"
+                                 style="alignment: center; margin: 20px; padding: 20px; align-content: center">
+                                <form method="get" action="{% url 'book' obj.id "flight" %}">
+                                    {% csrf_token %}
+                                    <button style="width: 100%" class="btn waves-effect waves-light" type="submit"
+                                            name="action">Book Now
+                                        <i class="material-icons right">send</i>
+                                    </button>
+                                </form>
+                            </div>
+                        {% endif %}
+                    </div>
                 {% endfor %}
             </div>
         </div>
