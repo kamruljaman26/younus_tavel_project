@@ -13,7 +13,6 @@ from .models import User, Location, History, Flight, Hotel, Payment
 json_file = open('databaseProj/config_vars.json').read()
 data = json.loads(json_file)
 
-
 @csrf_exempt
 def index(request):
     if request.method == 'POST':
